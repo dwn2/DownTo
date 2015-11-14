@@ -30,6 +30,12 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         client = delegate.client!
+
+        downToField.layer.borderWidth = 1.0
+        downToField.layer.borderColor = UIColor.blackColor().CGColor
+
+        meetAtField.layer.borderWidth = 1.0
+        meetAtField.layer.borderColor = UIColor.blackColor().CGColor
     }
 
 
@@ -100,6 +106,18 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     }
 
     @IBAction func createEvent() {
+        var valid = true
+        if downToField.text == nil || downToField.text!.isEmpty {
+            animateTextFieldBorder(downToField)
+            valid = false
+        }
+        if meetAtField.text == nil || downToField.text!.isEmpty {
+            animateTextFieldBorder(meetAtField)
+            valid = false
+        }
+        if !valid {
+            return
+        }
         let item: [String: AnyObject] = ["name": downToField.text!,
             "time": Int(timeButton.titleLabel!.text!)!,
             "location": meetAtField.text!]
@@ -111,9 +129,17 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
                 print("Error \(error.description)")
             }
             else {
-                print("Ayy lmao")
+                print("Sent event: \(item)")
             }
         }
+    }
+
+    func animateTextFieldBorder(textField: UITextField) {
+        let animation = CABasicAnimation.init(keyPath: "borderColor")
+        animation.fromValue = UIColor.redColor().CGColor
+        animation.toValue = UIColor.clearColor().CGColor
+        animation.duration = 1
+        textField.layer.addAnimation(animation, forKey: "borderColor")
     }
 }
 
