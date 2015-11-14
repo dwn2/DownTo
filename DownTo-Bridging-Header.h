@@ -4,3 +4,4 @@
 
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "SSKeychain.h"
+#import <QuartzCore/QuartzCore.h>
