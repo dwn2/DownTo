@@ -44,6 +44,7 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         
         myCell.textLabel?.text = "\(invites[indexPath.row].creatorName): Down 2 \(invites[indexPath.row].eventName)"
         myCell.detailTextLabel?.text = "Time"
+        myCell.tag = indexPath.row
         
         return myCell
     }
