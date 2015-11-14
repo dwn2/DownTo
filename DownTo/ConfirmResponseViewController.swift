@@ -11,5 +11,17 @@ import UIKit
 class ConfirmResponseViewController : UIViewController {
 
     
+    @IBOutlet weak var eventLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
+    var eventLabelText = String()
+    var nameLabelText = String()
+    var timeLabelText = String()
+    
+    override func viewDidLoad() {
+        eventLabel.text = eventLabelText
+        nameLabel.text = "by " + nameLabelText
+        timeLabel.text = timeLabelText
+    }
 }

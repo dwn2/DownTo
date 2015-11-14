@@ -46,9 +46,23 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         myCell.detailTextLabel?.text = "Time"
         myCell.tag = indexPath.row
         
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
+        
+        println(currentCell.textLabel!.text)
+        
         return myCell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let DestViewController : ConfirmResponseViewController = segue.destinationViewController as! ConfirmResponseViewController
+        
+        NSIndexPath selectedIndexPath = [tableView indexPathForSelectedRow]
+        
+        DestViewController.eventLabelText =
+        DestViewController.nameLabelText =
+        DestViewController.timeLabelText = myTableView.cellForRowAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
+    }
     
     
 }

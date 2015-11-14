@@ -332,7 +332,7 @@
         <!--Confirm Response-->
         <scene sceneID="bbi-Pk-yfN">
             <objects>
-                <viewController id="7gf-9V-jZB" customClass="ConfirmResponseViewController" sceneMemberID="viewController">
+                <viewController id="7gf-9V-jZB" customClass="ConfirmResponseViewController" customModule="DownTo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dnE-F4-jOh"/>
                         <viewControllerLayoutGuide type="bottom" id="ZYJ-dk-KJo"/>
@@ -479,6 +479,11 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="ZMl-qW-C1W"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="eventLabel" destination="Oex-Cx-DHJ" id="84i-mw-DXM"/>
+                        <outlet property="nameLabel" destination="N1n-Kh-uDm" id="Fkx-kX-ntg"/>
+                        <outlet property="timeLabel" destination="N7j-Ie-Z07" id="PgC-wj-Dyl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4G-KF-ig7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -529,7 +534,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="7gf-9V-jZB" kind="show" id="fEO-ku-iqR"/>
+                                            <segue destination="7gf-9V-jZB" kind="show" id="O4t-qE-2sM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
