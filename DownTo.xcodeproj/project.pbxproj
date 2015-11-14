@@ -15,7 +15,6 @@
 		895281361BF71CA6005B676D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895281341BF71CA6005B676D /* LaunchScreen.storyboard */; };
 		895281411BF71CA6005B676D /* DownToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895281401BF71CA6005B676D /* DownToTests.swift */; };
 		8952814C1BF71CA6005B676D /* DownToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952814B1BF71CA6005B676D /* DownToUITests.swift */; };
-		8952815A1BF73F97005B676D /* PickerViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895281591BF73F97005B676D /* PickerViewWrapper.swift */; };
 		8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		895281471BF71CA6005B676D /* DownToUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DownToUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8952814B1BF71CA6005B676D /* DownToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownToUITests.swift; sourceTree = "<group>"; };
 		8952814D1BF71CA6005B676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		895281591BF73F97005B676D /* PickerViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewWrapper.swift; sourceTree = "<group>"; };
 		8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveInvitesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +103,6 @@
 			children = (
 				895281281BF71CA6005B676D /* AppDelegate.swift */,
 				8952812A1BF71CA6005B676D /* CreateEventViewController.swift */,
-				895281591BF73F97005B676D /* PickerViewWrapper.swift */,
 				8952812C1BF71CA6005B676D /* Main.storyboard */,
 				8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */,
 				895281321BF71CA6005B676D /* Assets.xcassets */,
@@ -268,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8952815A1BF73F97005B676D /* PickerViewWrapper.swift in Sources */,
 				8952812B1BF71CA6005B676D /* CreateEventViewController.swift in Sources */,
 				895281291BF71CA6005B676D /* AppDelegate.swift in Sources */,
 				8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */,

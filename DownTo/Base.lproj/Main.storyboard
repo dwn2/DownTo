@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -142,19 +142,27 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04J-UK-GXA">
-                                <rect key="frame" x="0.0" y="600" width="600" height="260"/>
+                                <rect key="frame" x="0.0" y="340" width="600" height="260"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pd2-yT-zlg">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <animations/>
                                         <items>
-                                            <barButtonItem width="530" style="plain" systemItem="fixedSpace" id="NB3-Mr-xk0"/>
-                                            <barButtonItem title="Item" id="T0X-kS-jlU"/>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="aVV-fi-T7k"/>
+                                            <barButtonItem title="Done" id="T0X-kS-jlU">
+                                                <connections>
+                                                    <action selector="dismissPickerWrapperView" destination="BYZ-38-t0r" id="7la-Lm-QRE"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJ8-4B-T3m">
                                         <rect key="frame" x="0.0" y="44" width="600" height="216"/>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="ZJ1-Oz-P8j"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ieS-1l-BDQ"/>
+                                        </connections>
                                     </pickerView>
                                 </subviews>
                                 <animations/>
@@ -169,6 +177,33 @@
                                     <constraint firstItem="Pd2-yT-zlg" firstAttribute="top" secondItem="04J-UK-GXA" secondAttribute="top" id="vQX-y2-80E"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePs-9U-3Nt">
+                                <rect key="frame" x="513" y="241" width="67" height="49"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="Dn5-Pd-yb7"/>
+                                    <constraint firstAttribute="height" constant="49" id="Vt2-FM-bnX"/>
+                                    <constraint firstAttribute="width" constant="121" id="cot-I3-PCH"/>
+                                    <constraint firstAttribute="height" constant="49" id="heh-w1-aU8"/>
+                                    <constraint firstAttribute="width" constant="67" id="jW5-MI-hJy"/>
+                                    <constraint firstAttribute="width" constant="121" id="peR-t0-zNW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="67" id="wRK-l2-GB5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="121" id="x55-f8-RWm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Dn5-Pd-yb7"/>
+                                        <exclude reference="cot-I3-PCH"/>
+                                        <exclude reference="heh-w1-aU8"/>
+                                        <exclude reference="peR-t0-zNW"/>
+                                        <exclude reference="wRK-l2-GB5"/>
+                                        <exclude reference="x55-f8-RWm"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -189,11 +224,13 @@
                             <constraint firstAttribute="leadingMargin" secondItem="FC2-cX-hJo" secondAttribute="leading" id="cqD-rD-GVL"/>
                             <constraint firstItem="z65-DA-pcg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="dPT-s1-c3N"/>
                             <constraint firstItem="FC2-cX-hJo" firstAttribute="top" secondItem="h4h-iD-0lg" secondAttribute="bottom" constant="78" id="f2b-4B-SrE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ePs-9U-3Nt" secondAttribute="trailing" id="mMv-Ba-gaD"/>
                             <constraint firstItem="z65-DA-pcg" firstAttribute="leading" secondItem="h4h-iD-0lg" secondAttribute="trailing" constant="10" id="muZ-Us-w2v"/>
+                            <constraint firstItem="ePs-9U-3Nt" firstAttribute="top" secondItem="mPX-O8-EXc" secondAttribute="bottom" constant="13" id="neU-QY-O2q"/>
                             <constraint firstAttribute="leadingMargin" secondItem="h4h-iD-0lg" secondAttribute="leading" id="oJz-5V-HFO"/>
                             <constraint firstItem="mPX-O8-EXc" firstAttribute="top" secondItem="z65-DA-pcg" secondAttribute="bottom" constant="78" id="sEk-sh-hrK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="04J-UK-GXA" secondAttribute="trailing" constant="-20" id="sqC-GF-5Br"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="04J-UK-GXA" secondAttribute="bottom" constant="-260" id="wm4-0G-eFr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="04J-UK-GXA" secondAttribute="bottom" id="wm4-0G-eFr"/>
                             <constraint firstItem="gIf-gp-hCu" firstAttribute="top" secondItem="mPX-O8-EXc" secondAttribute="bottom" constant="13" id="xJt-dW-tW0"/>
                             <constraint firstItem="mPX-O8-EXc" firstAttribute="leading" secondItem="FC2-cX-hJo" secondAttribute="trailing" constant="10" id="z1G-uN-Uay"/>
                         </constraints>
@@ -206,7 +243,9 @@
                     </view>
                     <connections>
                         <outlet property="downToField" destination="z65-DA-pcg" id="hi2-9I-Ymd"/>
+                        <outlet property="heightConstraint" destination="wm4-0G-eFr" id="hug-EL-aJd"/>
                         <outlet property="meetAtField" destination="mPX-O8-EXc" id="RIa-oH-CGB"/>
+                        <outlet property="pickerView" destination="rJ8-4B-T3m" id="30b-lJ-gpn"/>
                         <outlet property="pickerWrapperView" destination="04J-UK-GXA" id="eED-19-jxB"/>
                         <outlet property="timeButton" destination="gIf-gp-hCu" id="EPl-5a-IcJ"/>
                     </connections>
@@ -229,6 +268,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lf-Sa-6fG">
                                 <rect key="frame" x="294" y="218" width="42" height="21"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>

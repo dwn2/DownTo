@@ -8,17 +8,31 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var downToField: UITextField!
     @IBOutlet weak var meetAtField: UITextField!
     @IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var pickerWrapperView: UIView!
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+
+    var isPickerWrapperViewActive: Bool = true
+    let pickerWrapperViewHeight: CGFloat = 260
+    var timeValue: Int = 5
+
+    let timeChoices = [5, 10, 15, 20, 25, 30]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
 
+    }
 
+    override func viewWillAppear(animated: Bool) {
+        if isPickerWrapperViewActive {
+            dismissPickerWrapperView()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,12 +47,51 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func timeLabelTapped() {
         print("Time label tapped!")
-        let oldFrame = self.pickerWrapperView.frame
-        let oldOrigin = self.pickerWrapperView.frame.origin
+        let oldFrame = pickerWrapperView.frame
+        let oldOrigin = pickerWrapperView.frame.origin
         print("oldFrame: \(oldFrame)")
         print("oldOrigin: \(oldOrigin)")
-        self.pickerWrapperView.frame = CGRectMake(oldOrigin.x, oldOrigin.y - self.pickerWrapperView.frame.height, oldFrame.width, oldFrame.height)
-        print("new frame: \(self.pickerWrapperView.frame)")
+        if !isPickerWrapperViewActive {
+            showPickerWrapperView()
+        }
+        else {
+            dismissPickerWrapperView()
+        }
+        print("new frame: \(pickerWrapperView.frame)")
+    }
+
+    @IBAction func dismissPickerWrapperView() {
+        heightConstraint.constant = -pickerWrapperViewHeight
+        UIView.animateWithDuration(0.1, animations: {
+            self.view.layoutIfNeeded()
+        })
+        timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
+        isPickerWrapperViewActive = false
+    }
+
+    @IBAction func showPickerWrapperView() {
+        heightConstraint.constant = 0
+        UIView.animateWithDuration(0.1, animations: {
+            self.view.layoutIfNeeded()
+        })
+        isPickerWrapperViewActive = true
+    }
+
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return timeChoices.count
+    }
+
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(timeChoices[row])
+    }
+
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        timeValue = timeChoices[row]
+        timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
     }
 }
 
