@@ -16,6 +16,11 @@
 		895281411BF71CA6005B676D /* DownToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895281401BF71CA6005B676D /* DownToTests.swift */; };
 		8952814C1BF71CA6005B676D /* DownToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952814B1BF71CA6005B676D /* DownToUITests.swift */; };
 		8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */; };
+		895281601BF7B784005B676D /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8952815F1BF7B784005B676D /* WindowsAzureMobileServices.framework */; };
+		895281691BF7CAF7005B676D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895281681BF7CAF7005B676D /* LoginViewController.swift */; };
+		8952816B1BF7D63A005B676D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8952816A1BF7D63A005B676D /* Security.framework */; };
+		895281701BF7D643005B676D /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952816D1BF7D643005B676D /* SSKeychain.m */; };
+		895281711BF7D643005B676D /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952816F1BF7D643005B676D /* SSKeychainQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,14 @@
 		8952814B1BF71CA6005B676D /* DownToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownToUITests.swift; sourceTree = "<group>"; };
 		8952814D1BF71CA6005B676D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveInvitesViewController.swift; sourceTree = "<group>"; };
+		8952815F1BF7B784005B676D /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		895281621BF7B8A7005B676D /* DownTo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DownTo-Bridging-Header.h"; sourceTree = "<group>"; };
+		895281681BF7CAF7005B676D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8952816A1BF7D63A005B676D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8952816C1BF7D643005B676D /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		8952816D1BF7D643005B676D /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		8952816E1BF7D643005B676D /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		8952816F1BF7D643005B676D /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8952816B1BF7D63A005B676D /* Security.framework in Frameworks */,
+				895281601BF7B784005B676D /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +96,12 @@
 		8952811C1BF71CA6005B676D = {
 			isa = PBXGroup;
 			children = (
+				8952816A1BF7D63A005B676D /* Security.framework */,
 				895281271BF71CA6005B676D /* DownTo */,
 				8952813F1BF71CA6005B676D /* DownToTests */,
 				8952814A1BF71CA6005B676D /* DownToUITests */,
 				895281261BF71CA6005B676D /* Products */,
+				895281621BF7B8A7005B676D /* DownTo-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,14 +118,20 @@
 		895281271BF71CA6005B676D /* DownTo */ = {
 			isa = PBXGroup;
 			children = (
+				8952816C1BF7D643005B676D /* SSKeychain.h */,
+				8952816D1BF7D643005B676D /* SSKeychain.m */,
+				8952816E1BF7D643005B676D /* SSKeychainQuery.h */,
+				8952816F1BF7D643005B676D /* SSKeychainQuery.m */,
 				895281281BF71CA6005B676D /* AppDelegate.swift */,
 				8952812A1BF71CA6005B676D /* CreateEventViewController.swift */,
 				8952812C1BF71CA6005B676D /* Main.storyboard */,
+				895281681BF7CAF7005B676D /* LoginViewController.swift */,
 				8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */,
 				895281321BF71CA6005B676D /* Assets.xcassets */,
 				895281341BF71CA6005B676D /* LaunchScreen.storyboard */,
 				895281371BF71CA6005B676D /* Info.plist */,
 				8952812F1BF71CA6005B676D /* DownTo.xcdatamodeld */,
+				8952815F1BF7B784005B676D /* WindowsAzureMobileServices.framework */,
 			);
 			path = DownTo;
 			sourceTree = "<group>";
@@ -268,7 +291,10 @@
 				8952812B1BF71CA6005B676D /* CreateEventViewController.swift in Sources */,
 				895281291BF71CA6005B676D /* AppDelegate.swift in Sources */,
 				8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */,
+				895281711BF7D643005B676D /* SSKeychainQuery.m in Sources */,
+				895281691BF7CAF7005B676D /* LoginViewController.swift in Sources */,
 				895281311BF71CA6005B676D /* DownTo.xcdatamodeld in Sources */,
+				895281701BF7D643005B676D /* SSKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,10 +434,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DownTo",
+				);
 				INFOPLIST_FILE = DownTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp2015.DownTo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DownTo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -419,10 +452,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DownTo",
+				);
 				INFOPLIST_FILE = DownTo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp2015.DownTo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DownTo-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -493,6 +532,7 @@
 				895281521BF71CA6005B676D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		895281531BF71CA6005B676D /* Build configuration list for PBXNativeTarget "DownToTests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +541,7 @@
 				895281551BF71CA6005B676D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		895281561BF71CA6005B676D /* Build configuration list for PBXNativeTarget "DownToUITests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +550,7 @@
 				895281581BF71CA6005B676D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

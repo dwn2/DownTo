@@ -22,12 +22,17 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
     let timeChoices = [5, 10, 15, 20, 25, 30]
 
+    var client: MSClient!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
-
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        client = delegate.client!
     }
+
+
 
     override func viewWillAppear(animated: Bool) {
         if isPickerWrapperViewActive {
@@ -92,6 +97,23 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         timeValue = timeChoices[row]
         timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
+    }
+
+    @IBAction func createEvent() {
+        let item: [String: AnyObject] = ["name": downToField.text!,
+            "time": Int(timeButton.titleLabel!.text!)!,
+            "location": meetAtField.text!]
+        let itemTable = client.tableWithName("Events")
+        print("\(itemTable)")
+        itemTable.insert(item) {
+            (insertedItem, error) in
+            if error != nil {
+                print("Error \(error.description)")
+            }
+            else {
+                print("Ayy lmao")
+            }
+        }
     }
 }
 
