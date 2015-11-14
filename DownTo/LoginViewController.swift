@@ -29,6 +29,19 @@ class LoginViewController : UIViewController {
 
     func saveAuthInfo() {
         SSKeychain.setPassword(client.currentUser.mobileServiceAuthenticationToken, forService: "AzureMobileServiceTutorial", account: client.currentUser.userId)
+        //Add user to database when they authenticate
+        let usr: [String: AnyObject] = ["name": client.currentUser.userId]
+        let usrTable = client.tableWithName("Users")
+        print("\(usrTable)")
+        usrTable.insert(usr) {
+            (insertedItem, error) in
+            if error != nil {
+                print("Error \(error.description)")
+            }
+            else {
+                print("Ayy lmao")
+            }
+        }
     }
 
     func loadAuthInfo() {
