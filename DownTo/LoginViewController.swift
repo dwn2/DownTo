@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct User {
-    var name: String
-    var id: String
-}
-
 class LoginViewController : UIViewController {
     var client: MSClient!
     var myUser: User?

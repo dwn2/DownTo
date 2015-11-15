@@ -45,9 +45,9 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        invites.append(Event.init(creatorName: "Chris", eventTime: NSDate.init(), eventName: "Lunch", eventLocation: "Hooters"))
-        invites.append(Event.init(creatorName: "Ryan", eventTime: NSDate.init(), eventName: "Chill", eventLocation: "Narnia"))
-        
+//        invites.append(Event.init(creatorName: "Chris", eventTime: NSDate.init(), eventName: "Lunch", eventLocation: "Hooters"))
+//        invites.append(Event.init(creatorName: "Ryan", eventTime: NSDate.init(), eventName: "Chill", eventLocation: "Narnia"))
+
         self.myTableView.addSubview(self.refreshControl)
     }
     
@@ -115,7 +115,7 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
                     
                     //Change to username, not userID
                     //fix with proper time
-                    self.updateList.append(Event.init(creatorName: item["creator_userid"] as! String, eventTime: NSDate.init(), eventName: item["name"] as! String, eventLocation: item["location"] as! String))
+                        self.updateList.append(Event.fromDictionary(item as! [String: AnyObject]))
                         //<- item["name"/"time"/"location"/"creator_userid"/"_createdAt"]
                     }
                 }

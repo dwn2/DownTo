@@ -136,6 +136,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     }
 
     @IBAction func createEvent() {
+        print("calling createEvent")
         var valid = true
         if downToField.text == nil || downToField.text!.isEmpty {
             animateTextFieldBorder(downToField)
@@ -148,56 +149,60 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         if !valid {
             return
         }
-        
-        
-        let invItem: [String: AnyObject] =
-            ["name": downToField.text!,
-            "time": Int(timeButton.titleLabel!.text!)!,
-            "location": meetAtField.text!]
+
+
         let itemTable = client.tableWithName("Events")
         print("\(itemTable)")
-        itemTable.insert(invItem) {
-            (insertedItem, error) in
-            if error != nil {
-                print("Error \(error.description)")
-            }
-            else {
-                print("Sent event: \(invItem)")
-            }
-        }
 
-        let usersTable = client.tableWithName("Users")
-        usersTable.readWithCompletion({
-            (result, error2) in
-            if error2 != nil {
-                print(error2)
-            }
-            else {
-                for item in result.items {
-                    if let name = item["name"] {
-                        let invItem: [String: AnyObject] =
-                            ["name": self.downToField.text!,
-                            "time": Int(self.timeButton.titleLabel!.text!)!,
-                            "location": self.meetAtField.text!,
-                            "receiver_userId": name!]
-                        let itemTable = self.client.tableWithName("Events")
-                        print("\(itemTable)")
-                        itemTable.insert(invItem) {
-                            (insertedItem, error) in
-                            if error != nil {
-                                print("Error \(error.description)")
-                            }
-                            else {
-                                print("Sent event: \(invItem)")
-                            }
-                        }
+//        let usersTable = client.tableWithName("Users")
+//        usersTable.readWithCompletion({
+//            (result, error2) in
+//            if error2 != nil {
+//                print(error2)
+//            }
+//            else {
+//                for item in result.items {
+//                    if let name = item["name"] {
+//                        let invItem: [String: AnyObject] =
+//                            ["name": self.downToField.text!,
+//                            "time": Int(self.timeButton.titleLabel!.text!)!,
+//                            "location": self.meetAtField.text!,
+//                            "receiver_userId": name!]
+//                        let itemTable = self.client.tableWithName("Events")
+//                        print("\(itemTable)")
+//                        itemTable.insert(invItem) {
+//                            (insertedItem, error) in
+//                            if error != nil {
+//                                print("Error \(error.description)")
+//                            }
+//                            else {
+//                                print("Sent event: \(invItem)")
+//                            }
+//                        }
+//                    }
+//                    else {
+//                        print("error")
+//                    }
+//                }
+//                for (index, user) in
+//            }
+//        })
+        for (index, user) in otherUsers.enumerate() {
+            if selectedUsers[index] {
+                print("adding event for user \(user.name)")
+                let eventDict = Event.init(creator: myUser!, receiver: user, eventName: downToField.text!, eventLocation: meetAtField.text!, eventTime: Int((timeButton.titleLabel?.text)!)!).createDictionary()
+                print(eventDict)
+                itemTable.insert(eventDict) {
+                    (insertedItem, error) in
+                    if error != nil {
+                        print("Error \(error.description)")
                     }
                     else {
-                        print("error")
+                        print("Sent event: \(insertedItem)")
                     }
                 }
             }
-        })
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
