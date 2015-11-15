@@ -26,10 +26,17 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     @IBOutlet var myTableView: UITableView!
     
     var invites: [Invite] = []
+    var selectedIndex = 0
     
     override func viewDidLoad() {
+        
         invites.append(Invite.init(creatorName: "Chris", time: NSDate.init(), eventName: "Lunch"))
         invites.append(Invite.init(creatorName: "Ryan", time: NSDate.init(), eventName: "Chill"))
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(indexPath)
+        selectedIndex = indexPath.row
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -46,22 +53,19 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         myCell.detailTextLabel?.text = "Time"
         myCell.tag = indexPath.row
         
-        let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
-        
-        println(currentCell.textLabel!.text)
-        
         return myCell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let DestViewController : ConfirmResponseViewController = segue.destinationViewController as! ConfirmResponseViewController
+        let destViewController : ConfirmResponseViewController = segue.destinationViewController as! ConfirmResponseViewController
+        destViewController.nameLabelText = invites[selectedIndex].creatorName
+        //destViewController.timeLabelText =
         
-        NSIndexPath selectedIndexPath = [tableView indexPathForSelectedRow]
+        //let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
         
-        DestViewController.eventLabelText =
-        DestViewController.nameLabelText =
-        DestViewController.timeLabelText = myTableView.cellForRowAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
+        //DestViewController.eventLabelText =
+        //DestViewController.nameLabelText =
+       // DestViewController.timeLabelText = myTableView.cellForRowAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
     }
     
     

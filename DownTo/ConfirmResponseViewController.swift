@@ -20,8 +20,8 @@ class ConfirmResponseViewController : UIViewController {
     var timeLabelText = String()
     
     override func viewDidLoad() {
-        eventLabel.text = eventLabelText
+//        eventLabel.text = "My event"
         nameLabel.text = "by " + nameLabelText
-        timeLabel.text = timeLabelText
+//        timeLabel.text = "A 10:30"
     }
 }
