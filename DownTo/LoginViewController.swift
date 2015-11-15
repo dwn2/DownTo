@@ -13,16 +13,16 @@ class LoginViewController : UIViewController {
 
     override func viewDidLoad() {
         client = (UIApplication.sharedApplication().delegate as! AppDelegate).client!
-//        client.currentUser = nil
+//        client.logout()
 //        SSKeychain.deletePasswordForService("AzureMobileServiceTutorial", account: "Facebook:1217481261611695")
         loadAuthInfo()
         if client.currentUser == nil {
-            print("\(client.currentUser)")
+            print(client.currentUser)
             client.loginWithProvider("facebook", controller: self, animated: true, completion: {
                 (user: MSUser!, error: NSError!) -> () in
                 print("\(error)")
                 self.saveAuthInfo()
-                print("\(self.client.currentUser)")
+                print("\(self.client.currentUser.userId)")
             })
         }
     }
@@ -46,6 +46,7 @@ class LoginViewController : UIViewController {
 
     func loadAuthInfo() {
         if let userId = SSKeychain.accountsForService("AzureMobileServiceTutorial")?[0]["acct"] as? String {
+            print(SSKeychain.accountsForService("AzureMobileServiceTutorial")?[0])
             print("user id: \(userId)")
             client.currentUser = MSUser.init(userId: userId)
             client.currentUser.mobileServiceAuthenticationToken = SSKeychain.passwordForService("AzureMobileServiceTutorial", account: userId)
