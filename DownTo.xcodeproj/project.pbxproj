@@ -22,6 +22,7 @@
 		895281701BF7D643005B676D /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952816D1BF7D643005B676D /* SSKeychain.m */; };
 		895281711BF7D643005B676D /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952816F1BF7D643005B676D /* SSKeychainQuery.m */; };
 		B2702C7E1BF7EFC200A6429B /* ConfirmResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */; };
+		B2A44D5F1BF83C010009CCAA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A44D5E1BF83C010009CCAA /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		8952816E1BF7D643005B676D /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		8952816F1BF7D643005B676D /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmResponseViewController.swift; sourceTree = "<group>"; };
+		B2A44D5E1BF83C010009CCAA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */,
 				895281681BF7CAF7005B676D /* LoginViewController.swift */,
 				8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */,
+				B2A44D5E1BF83C010009CCAA /* Event.swift */,
 				895281321BF71CA6005B676D /* Assets.xcassets */,
 				895281341BF71CA6005B676D /* LaunchScreen.storyboard */,
 				895281371BF71CA6005B676D /* Info.plist */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8952812B1BF71CA6005B676D /* CreateEventViewController.swift in Sources */,
+				B2A44D5F1BF83C010009CCAA /* Event.swift in Sources */,
 				895281291BF71CA6005B676D /* AppDelegate.swift in Sources */,
 				8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */,
 				895281711BF7D643005B676D /* SSKeychainQuery.m in Sources */,

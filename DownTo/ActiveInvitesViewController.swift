@@ -8,30 +8,42 @@
 
 import UIKit
 
-class Invite {
-    var creatorName: String
-    var time: NSDate
-    var eventName: String
-    
-    init(creatorName: String, time: NSDate, eventName: String) {
-        self.creatorName = creatorName
-        self.time = time
-        self.eventName = eventName
-    }
-    
-}
+//class Invite {
+//    var creatorName: String
+//    var time: NSDate
+//    var eventName: String
+//    
+//    init(creatorName: String, time: NSDate, eventName: String) {
+//        self.creatorName = creatorName
+//        self.time = time
+//        self.eventName = eventName
+//    }
+//
+//}
 
 class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var myTableView: UITableView!
     
-    var invites: [Invite] = []
+    var invites: [Event] = []
     var selectedIndex = 0
     
-    override func viewDidLoad() {
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         
-        invites.append(Invite.init(creatorName: "Chris", time: NSDate.init(), eventName: "Lunch"))
-        invites.append(Invite.init(creatorName: "Ryan", time: NSDate.init(), eventName: "Chill"))
+        return refreshControl
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        invites.append(Event.init(creatorName: "Chris", eventTime: NSDate.init(), eventName: "Lunch", eventLocation: "Hooters"))
+        invites.append(Event.init(creatorName: "Ryan", eventTime: NSDate.init(), eventName: "Chill", eventLocation: "Narnia"))
+        
+        self.myTableView.addSubview(self.refreshControl)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -68,5 +80,13 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
        // DestViewController.timeLabelText = myTableView.cellForRowAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
     }
     
-    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+        
+        self.myTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
 }
