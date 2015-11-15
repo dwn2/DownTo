@@ -8,13 +8,14 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var downToField: UITextField!
     @IBOutlet weak var meetAtField: UITextField!
     @IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var pickerWrapperView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
 
     var isPickerWrapperViewActive: Bool = true
     let pickerWrapperViewHeight: CGFloat = 260
@@ -23,6 +24,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     let timeChoices = [5, 10, 15, 20, 25, 30]
 
     var client: MSClient!
+
+    var myUser: User?
+    var otherUsers: [User] = []
+    var selectedUsers: [Bool] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +41,25 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
         meetAtField.layer.borderWidth = 1.0
         meetAtField.layer.borderColor = UIColor.blackColor().CGColor
+
+        let tap = UITapGestureRecognizer.init(target: self, action: Selector("dismissKeyboard:"))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+
+        for _ in otherUsers {
+            selectedUsers.append(false)
+        }
     }
 
-
+    func dismissKeyboard(sender: UITapGestureRecognizer) {
+//        let point = sender.locationInView(self.view)
+//        if !CGRectContainsPoint(tableView.frame, point) {
+//            downToField.resignFirstResponder()
+//            meetAtField.resignFirstResponder()
+//        }
+        downToField.resignFirstResponder()
+        meetAtField.resignFirstResponder()
+    }
 
     override func viewWillAppear(animated: Bool) {
         if isPickerWrapperViewActive {
@@ -81,6 +102,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     }
 
     @IBAction func showPickerWrapperView() {
+        view.bringSubviewToFront(pickerWrapperView)
         heightConstraint.constant = 0
         UIView.animateWithDuration(0.1, animations: {
             self.view.layoutIfNeeded()
@@ -128,7 +150,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         }
         
         
-        let invItem: [String: AnyObject] = ["name": downToField.text!,
+        let invItem: [String: AnyObject] =
+            ["name": downToField.text!,
             "time": Int(timeButton.titleLabel!.text!)!,
             "location": meetAtField.text!]
         let itemTable = client.tableWithName("Events")
@@ -142,9 +165,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
                 print("Sent event: \(invItem)")
             }
         }
-        
-       
-        
+
         let usersTable = client.tableWithName("Users")
         usersTable.readWithCompletion({
             (result, error2) in
@@ -177,6 +198,29 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
                 }
             }
         })
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return otherUsers.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let myCell = tableView.dequeueReusableCellWithIdentifier("invitedUsersCell", forIndexPath: indexPath) as UITableViewCell
+        myCell.textLabel?.text = otherUsers[indexPath.row].name
+        return myCell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        if selectedUsers[indexPath.row] {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            selectedUsers[indexPath.row] = false
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            selectedUsers[indexPath.row] = true
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 
