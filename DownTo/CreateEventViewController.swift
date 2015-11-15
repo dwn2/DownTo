@@ -32,6 +32,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UINavigationBar.appearance().tintColor = UIColor.init(netHex: 0x0099FF)
         // Do any additional setup after loading the view, typically from a nib.
         timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
