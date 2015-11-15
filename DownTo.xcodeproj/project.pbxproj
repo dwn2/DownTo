@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		890E478B1BF8680600263CFA /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890E478A1BF8680600263CFA /* AttendanceViewController.swift */; };
 		895281291BF71CA6005B676D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895281281BF71CA6005B676D /* AppDelegate.swift */; };
 		8952812B1BF71CA6005B676D /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952812A1BF71CA6005B676D /* CreateEventViewController.swift */; };
 		8952812E1BF71CA6005B676D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8952812C1BF71CA6005B676D /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		890E478A1BF8680600263CFA /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		895281251BF71CA6005B676D /* DownTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DownTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895281281BF71CA6005B676D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8952812A1BF71CA6005B676D /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				8952816F1BF7D643005B676D /* SSKeychainQuery.m */,
 				895281281BF71CA6005B676D /* AppDelegate.swift */,
 				8952812A1BF71CA6005B676D /* CreateEventViewController.swift */,
+				890E478A1BF8680600263CFA /* AttendanceViewController.swift */,
 				8952812C1BF71CA6005B676D /* Main.storyboard */,
 				B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */,
 				895281681BF7CAF7005B676D /* LoginViewController.swift */,
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8952812B1BF71CA6005B676D /* CreateEventViewController.swift in Sources */,
+				890E478B1BF8680600263CFA /* AttendanceViewController.swift in Sources */,
 				B2A44D5F1BF83C010009CCAA /* Event.swift in Sources */,
 				895281291BF71CA6005B676D /* AppDelegate.swift in Sources */,
 				8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */,

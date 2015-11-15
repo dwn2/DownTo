@@ -8,6 +8,55 @@
 
 import Foundation
 
+class Countdown : CustomStringConvertible {
+    var startMinutes: Int
+    var currentMinutes: Int
+    var currentSeconds: Int
+    var description: String {
+        get {
+            if currentSeconds < 10 {
+                return "\(currentMinutes):0\(currentSeconds)"
+            }
+            return  "\(currentMinutes):\(currentSeconds)"
+        }
+    }
+    var done: Bool {
+        get {
+            return currentMinutes == 0 && currentSeconds == 0
+        }
+    }
+
+    init(startMinutes: Int, currentMinutes: Int, currentSeconds: Int) {
+        self.startMinutes = startMinutes
+        self.currentMinutes = currentMinutes
+        self.currentSeconds = currentSeconds
+    }
+
+    convenience init(_ startMinutes: Int) {
+        self.init(startMinutes: startMinutes, currentMinutes: startMinutes, currentSeconds: 0)
+    }
+
+    func decrement() {
+        currentSeconds--
+        if currentSeconds < 0 {
+            if currentMinutes == 0 {
+                currentSeconds = 0
+                return
+            }
+            currentMinutes--
+            currentSeconds = 59
+        }
+    }
+
+    func increment() {
+        currentSeconds++
+        if currentSeconds == 60 {
+            currentMinutes++
+            currentSeconds = 0
+        }
+    }
+}
+
 struct User {
     var name: String
     var id: String

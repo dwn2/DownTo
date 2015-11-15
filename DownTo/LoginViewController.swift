@@ -13,6 +13,8 @@ class LoginViewController : UIViewController {
     var myUser: User?
     var otherUsers: [User] = []
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         client = (UIApplication.sharedApplication().delegate as! AppDelegate).client!
 //        client.logout()
@@ -58,6 +60,7 @@ class LoginViewController : UIViewController {
 
     func requestUsersList() {
         print("requesting users list")
+        activityIndicator.startAnimating()
         let userTable = self.client.tableWithName("Users")
         userTable.readWithCompletion({
             (result, error) in
@@ -76,6 +79,8 @@ class LoginViewController : UIViewController {
                 print("my user: \(self.myUser)")
                 print("other users: \(self.otherUsers)")
             }
+            self.activityIndicator.stopAnimating()
+//            self.activityIndicator.removeFromSuperview()
         })
     }
 

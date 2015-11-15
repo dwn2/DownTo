@@ -16,6 +16,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     var isPickerWrapperViewActive: Bool = true
     let pickerWrapperViewHeight: CGFloat = 260
@@ -137,12 +138,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
     @IBAction func createEvent() {
         print("calling createEvent")
+//        activityIndicator.startAnimating()
         var valid = true
         if downToField.text == nil || downToField.text!.isEmpty {
             animateTextFieldBorder(downToField)
             valid = false
         }
-        if meetAtField.text == nil || downToField.text!.isEmpty {
+        if meetAtField.text == nil || meetAtField.text!.isEmpty {
             animateTextFieldBorder(meetAtField)
             valid = false
         }
@@ -203,6 +205,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
                 }
             }
         }
+        performSegueWithIdentifier("showAttendance", sender: self)
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -226,6 +229,22 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
             selectedUsers[indexPath.row] = true
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier! == "showAttendance" {
+            let dest = segue.destinationViewController as! AttendanceViewController
+            dest.myUser = myUser
+            dest.otherUsers = otherUsers
+            for (index, user) in dest.otherUsers.enumerate() {
+                if selectedUsers[index] {
+                    dest.invitedUsers.append(user)
+                }
+            }
+            dest.locationName = meetAtField.text
+            dest.eventName = downToField.text
+            dest.timeLeft = Countdown.init(Int((timeButton.titleLabel?.text)!)!)
+        }
     }
 }
 
