@@ -104,6 +104,14 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         timeValue = timeChoices[row]
         timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
     }
+    
+    func animateTextFieldBorder(textField: UITextField) {
+        let animation = CABasicAnimation.init(keyPath: "borderColor")
+        animation.fromValue = UIColor.redColor().CGColor
+        animation.toValue = UIColor.clearColor().CGColor
+        animation.duration = 1
+        textField.layer.addAnimation(animation, forKey: "borderColor")
+    }
 
     @IBAction func createEvent() {
         var valid = true
@@ -118,28 +126,57 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         if !valid {
             return
         }
-        let item: [String: AnyObject] = ["name": downToField.text!,
+        
+        
+        let invItem: [String: AnyObject] = ["name": downToField.text!,
             "time": Int(timeButton.titleLabel!.text!)!,
             "location": meetAtField.text!]
         let itemTable = client.tableWithName("Events")
         print("\(itemTable)")
-        itemTable.insert(item) {
+        itemTable.insert(invItem) {
             (insertedItem, error) in
             if error != nil {
                 print("Error \(error.description)")
             }
             else {
-                print("Sent event: \(item)")
+                print("Sent event: \(invItem)")
             }
         }
-    }
-
-    func animateTextFieldBorder(textField: UITextField) {
-        let animation = CABasicAnimation.init(keyPath: "borderColor")
-        animation.fromValue = UIColor.redColor().CGColor
-        animation.toValue = UIColor.clearColor().CGColor
-        animation.duration = 1
-        textField.layer.addAnimation(animation, forKey: "borderColor")
+        
+       
+        
+        let usersTable = client.tableWithName("Users")
+        usersTable.readWithCompletion({
+            (result, error2) in
+            if error2 != nil {
+                print(error2)
+            }
+            else {
+                for item in result.items {
+                    if let name = item["name"] {
+                        let invItem: [String: AnyObject] =
+                            ["name": self.downToField.text!,
+                            "time": Int(self.timeButton.titleLabel!.text!)!,
+                            "location": self.meetAtField.text!,
+                            "receiver_userId": name!]
+                        let itemTable = self.client.tableWithName("Events")
+                        print("\(itemTable)")
+                        itemTable.insert(invItem) {
+                            (insertedItem, error) in
+                            if error != nil {
+                                print("Error \(error.description)")
+                            }
+                            else {
+                                print("Sent event: \(invItem)")
+                            }
+                        }
+                    }
+                    else {
+                        print("error")
+                    }
+                }
+            }
+        })
     }
 }
 
