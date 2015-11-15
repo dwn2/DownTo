@@ -243,6 +243,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
             }
             dest.locationName = meetAtField.text
             dest.eventName = downToField.text
+            dest.initialTimeLeft = Int((timeButton.titleLabel?.text)!)!
             dest.timeLeft = Countdown.init(Int((timeButton.titleLabel?.text)!)!)
         }
     }

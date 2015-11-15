@@ -68,6 +68,7 @@
 		8952816D1BF7D643005B676D /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		8952816E1BF7D643005B676D /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		8952816F1BF7D643005B676D /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		89F651EB1BF89D9D005D8A49 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
 		B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmResponseViewController.swift; sourceTree = "<group>"; };
 		B2A44D5E1BF83C010009CCAA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +141,7 @@
 				895281341BF71CA6005B676D /* LaunchScreen.storyboard */,
 				895281371BF71CA6005B676D /* Info.plist */,
 				8952812F1BF71CA6005B676D /* DownTo.xcdatamodeld */,
+				89F651EB1BF89D9D005D8A49 /* DejaVuSans.ttf */,
 				8952815F1BF7B784005B676D /* WindowsAzureMobileServices.framework */,
 			);
 			path = DownTo;
