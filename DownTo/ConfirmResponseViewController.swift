@@ -122,7 +122,14 @@ class ConfirmResponseViewController : UIViewController {
             }
         })
     }
+
+    @IBAction func showAlert() {
+        let alert = UIAlertView.init(title: "Congrats!", message: "You're going.", delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: "Cancel")
+        alert.show()
+    }
     
-    
-    
+    @IBAction func showAnotherAlert() {
+        let alert = UIAlertView.init(title: "Boo", message: "You're not going.", delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: "Cancel")
+        alert.show()
+    }
 }

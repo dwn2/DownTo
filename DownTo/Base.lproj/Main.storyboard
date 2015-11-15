@@ -521,6 +521,9 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                                 <state key="normal" title="Down"/>
+                                <connections>
+                                    <action selector="showAlert" destination="7gf-9V-jZB" eventType="touchDown" id="tNx-st-lcb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sF-bQ-Qxb">
                                 <rect key="frame" x="236" y="474" width="111.5" height="41"/>
@@ -528,8 +531,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Not Down"/>
                                 <connections>
-                                    <action selector="notDownButtonPressed:" destination="7gf-9V-jZB" eventType="touchUpInside" id="bJ4-3h-ptq"/>
-                                    <action selector="notDownTap" destination="7gf-9V-jZB" eventType="touchUpInside" id="ORd-Yu-KQE"/>
+                                    <action selector="showAnotherAlert" destination="7gf-9V-jZB" eventType="touchUpInside" id="9o6-3w-1l8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by &quot;Name&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-Kh-uDm">
