@@ -514,7 +514,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCM-D9-Nca">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCM-D9-Nca">
                                 <rect key="frame" x="29" y="474" width="112" height="40"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
@@ -523,6 +523,7 @@
                                 <connections>
                                     <action selector="ButtonPressed" destination="7gf-9V-jZB" eventType="touchUpInside" id="fJX-38-izD"/>
                                     <action selector="ButtonPressed:" destination="7gf-9V-jZB" eventType="touchUpInside" id="FPL-7K-2a7"/>
+                                    <action selector="downButtonPressed:" destination="7gf-9V-jZB" eventType="touchUpInside" id="RMh-DZ-ipv"/>
                                     <action selector="downTap" destination="7gf-9V-jZB" eventType="touchUpInside" id="Ozm-eH-lTs"/>
                                 </connections>
                             </button>
@@ -532,6 +533,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Not Down"/>
                                 <connections>
+                                    <action selector="notDownButtonPressed:" destination="7gf-9V-jZB" eventType="touchUpInside" id="bJ4-3h-ptq"/>
                                     <action selector="notDownTap" destination="7gf-9V-jZB" eventType="touchUpInside" id="ORd-Yu-KQE"/>
                                 </connections>
                             </button>
@@ -608,7 +610,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nnx-M7-v3a">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nnx-M7-v3a">
                                 <rect key="frame" x="4" y="251" width="169" height="215"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
