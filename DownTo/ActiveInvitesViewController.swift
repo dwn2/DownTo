@@ -8,8 +8,7 @@
 
 import UIKit
 
-//class Invite {
-//    var creatorName: String
+//class Invite { //    var creatorName: String
 //    var time: NSDate
 //    var eventName: String
 //    
@@ -27,6 +26,8 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     
     var invites: [Event] = []
     var selectedIndex = 0
+    var updateList: [Event] = []
+    var client: MSClient!
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -37,6 +38,10 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        client = delegate.client!
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         
@@ -81,12 +86,42 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
+        //Creates updateList array with new events
+        update()
         
-        // Simply adding an object to the data source for this example
+        for index in 1...updateList.count-1 {
+            invites.append(updateList[index])
+        }
         
         self.myTableView.reloadData()
         refreshControl.endRefreshing()
     }
+    
+    //This funcation gives a chance to access all events that the current user is invited to
+    func update() {
+        
+        self.updateList = []
+        let usersTable = self.client.tableWithName("Events")
+        //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
+        usersTable.readWithCompletion({
+            
+            (result, error2) in
+            if error2 != nil {
+                print(error2)
+            }
+            else {
+                for item in result.items {
+                    if String(item["receiver_userid"]) == self.client.currentUser.userId {
+                    
+                    //Change to username, not userID
+                    //fix with proper time
+                    self.updateList.append(Event.init(creatorName: item["creator_userid"] as! String, eventTime: NSDate.init(), eventName: item["name"] as! String, eventLocation: item["location"] as! String))
+                        //<- item["name"/"time"/"location"/"creator_userid"/"_createdAt"]
+                    }
+                }
+            }
+        })
+    }
+    
+    
 }
