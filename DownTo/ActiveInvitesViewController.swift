@@ -28,6 +28,8 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     var invites: [Invite] = []
     var selectedIndex = 0
     
+    var client: MSClient!
+    
     override func viewDidLoad() {
         
         invites.append(Invite.init(creatorName: "Chris", time: NSDate.init(), eventName: "Lunch"))
@@ -67,6 +69,29 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         //DestViewController.nameLabelText =
        // DestViewController.timeLabelText = myTableView.cellForRowAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
     }
+    
+    //This funcation gives a chance to access all events that the current user is invited to
+    func update() {
+        var list = []
+        let usersTable = client.tableWithName("Events")
+        //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
+        usersTable.readWithCompletion({
+            (result, error2) in
+            if error2 != nil {
+                print(error2)
+            }
+            else {
+                for item in result.items {
+                    if String(item["receiver_userid"]) == self.client.currentUser.userId
+                    {
+                        //list.append() <- item["name"/"time"/"location"/"creator_userid"/"_createdAt"]
+                    }
+                }
+            }
+        })
+    }
+    
+    
     
     
 }
