@@ -35,6 +35,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         // Do any additional setup after loading the view, typically from a nib.
         timeButton.setTitle(String(timeValue), forState: UIControlState.Normal)
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        myUser = delegate.myUser
+        otherUsers = delegate.otherUsers
         client = delegate.client!
 
         downToField.layer.borderWidth = 1.0

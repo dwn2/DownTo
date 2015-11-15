@@ -79,21 +79,15 @@ class LoginViewController : UIViewController {
                 print("my user: \(self.myUser)")
                 print("other users: \(self.otherUsers)")
             }
+            self.performSegueWithIdentifier("login", sender: self)
             self.activityIndicator.stopAnimating()
 //            self.activityIndicator.removeFromSuperview()
         })
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier! == "showCreateEvent" {
-            let dest = segue.destinationViewController as! CreateEventViewController
-            dest.myUser = myUser
-            dest.otherUsers = otherUsers
-        }
-        else if segue.identifier! == "showActiveInvites" {
-            let dest = segue.destinationViewController as! ActiveInvitesViewController
-            dest.myUser = myUser
-            dest.otherUsers = otherUsers
-        }
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        delegate.myUser = myUser
+        delegate.otherUsers = otherUsers
     }
 }

@@ -46,7 +46,10 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         client = delegate.client!
-        
+
+        myUser = delegate.myUser
+        otherUsers = delegate.otherUsers
+
         // Do any additional setup after loading the view, typically from a nib.
         
         
