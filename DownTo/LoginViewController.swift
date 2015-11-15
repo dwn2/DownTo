@@ -85,5 +85,10 @@ class LoginViewController : UIViewController {
             dest.myUser = myUser
             dest.otherUsers = otherUsers
         }
+        else if segue.identifier! == "showActiveInvites" {
+            let dest = segue.destinationViewController as! ActiveInvitesViewController
+            dest.myUser = myUser
+            dest.otherUsers = otherUsers
+        }
     }
 }

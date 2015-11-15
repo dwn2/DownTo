@@ -28,6 +28,9 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     var selectedIndex = 0
     var updateList: [Event] = []
     var client: MSClient!
+
+    var myUser: User?
+    var otherUsers: [User] = []
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -96,8 +99,9 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         self.updateList = []
         let usersTable = self.client.tableWithName("Events")
         //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
-        usersTable.readWithCompletion({
-            
+        let predicate = NSPredicate.init(format: "receiver_userid == %@", myUser!.id)
+//        usersTable.readWithCompletion({
+        usersTable.readWithPredicate(predicate, completion: {
             (result, error2) in
             if error2 != nil {
                 print(error2)
@@ -107,14 +111,11 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
                     print(item)
                     print(String(item["receiver_userid"]))
                     print(self.client.currentUser.userId)
-                    if item["receiver_userid"] as! String == self.client.currentUser.userId {
-                    
-                    //Change to username, not userID
-                    //fix with proper time
+//                    if item["receiver_userid"] as! String == self.client.currentUser.userId {
+
                         self.updateList.append(Event.fromDictionary(item as! [String: AnyObject]))
                         print("array: \(self.updateList)")
-                        //<- item["name"/"time"/"location"/"creator_userid"/"_createdAt"]
-                    }
+//                    }
                 }
 
                 if self.updateList.count != 0 {
