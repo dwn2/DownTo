@@ -68,6 +68,7 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
 //                }
 //            }
 //        }
+        update()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -85,7 +86,7 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         
         let myCell = tableView.dequeueReusableCellWithIdentifier("prototype1", forIndexPath: indexPath) as UITableViewCell
         
-        myCell.textLabel?.text = "\(invites[indexPath.row].creatorName): Down 2 \(invites[indexPath.row].eventName)"
+        myCell.textLabel?.text = "\(invites[indexPath.row].creatorName): dwn2 \(invites[indexPath.row].eventName)"
         myCell.detailTextLabel?.text = "\(invites[indexPath.row].eventTime):00"
         myCell.tag = indexPath.row
         
@@ -94,8 +95,10 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destViewController : ConfirmResponseViewController = segue.destinationViewController as! ConfirmResponseViewController
+        
         destViewController.nameLabelText = invites[selectedIndex].creatorName
-        //destViewController.timeLabelText =
+        destViewController.eventLabelText = invites[selectedIndex].eventName
+        destViewController.timeLabelText = String(invites[selectedIndex].eventTime)
         
         //let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
         

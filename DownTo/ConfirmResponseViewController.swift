@@ -29,9 +29,9 @@ class ConfirmResponseViewController : UIViewController {
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         client = delegate.client!
         
-        //        eventLabel.text = "My event"
+        eventLabel.text = "dwn2 " + eventLabelText
         nameLabel.text = "by " + nameLabelText
-        //        timeLabel.text = "A 10:30"
+        timeLabel.text = timeLabelText + ":00"
     }
     
     
@@ -72,15 +72,14 @@ class ConfirmResponseViewController : UIViewController {
         })
     }
     
-    /*@IBAction func downTap() {
-        print("HI")
+
+    @IBAction func downButtonPressed(sender: AnyObject) {
+
     }
     
-    
-    
-    @IBAction func notDownTap() {
-        down()
-    }*/
+    @IBAction func notDownButtonPressed(sender: AnyObject) {
+        
+    }
     
     //Changes event to accepted if user accepts
     func down() {
