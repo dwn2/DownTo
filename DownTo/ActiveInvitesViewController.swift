@@ -97,6 +97,7 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     //This funcation gives a chance to access all events that the current user is invited to
     func update() {
         self.updateList = []
+        self.invites = []
         let usersTable = self.client.tableWithName("Events")
         //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
         let predicate = NSPredicate.init(format: "receiver_userid == %@", myUser!.id)
