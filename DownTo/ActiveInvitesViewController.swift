@@ -26,10 +26,17 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     @IBOutlet var myTableView: UITableView!
     
     var invites: [Invite] = []
+    var selectedIndex = 0
     
     override func viewDidLoad() {
+        
         invites.append(Invite.init(creatorName: "Chris", time: NSDate.init(), eventName: "Lunch"))
         invites.append(Invite.init(creatorName: "Ryan", time: NSDate.init(), eventName: "Chill"))
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(indexPath)
+        selectedIndex = indexPath.row
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -49,6 +56,17 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         return myCell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destViewController : ConfirmResponseViewController = segue.destinationViewController as! ConfirmResponseViewController
+        destViewController.nameLabelText = invites[selectedIndex].creatorName
+        //destViewController.timeLabelText =
+        
+        //let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
+        
+        //DestViewController.eventLabelText =
+        //DestViewController.nameLabelText =
+       // DestViewController.timeLabelText = myTableView.cellForRowAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
+    }
     
     
 }

@@ -21,6 +21,7 @@
 		8952816B1BF7D63A005B676D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8952816A1BF7D63A005B676D /* Security.framework */; };
 		895281701BF7D643005B676D /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952816D1BF7D643005B676D /* SSKeychain.m */; };
 		895281711BF7D643005B676D /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952816F1BF7D643005B676D /* SSKeychainQuery.m */; };
+		B2702C7E1BF7EFC200A6429B /* ConfirmResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		8952816D1BF7D643005B676D /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		8952816E1BF7D643005B676D /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		8952816F1BF7D643005B676D /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmResponseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				895281281BF71CA6005B676D /* AppDelegate.swift */,
 				8952812A1BF71CA6005B676D /* CreateEventViewController.swift */,
 				8952812C1BF71CA6005B676D /* Main.storyboard */,
+				B2702C7D1BF7EFC200A6429B /* ConfirmResponseViewController.swift */,
 				895281681BF7CAF7005B676D /* LoginViewController.swift */,
 				8952815B1BF78B45005B676D /* ActiveInvitesViewController.swift */,
 				895281321BF71CA6005B676D /* Assets.xcassets */,
@@ -293,6 +296,7 @@
 				8952815C1BF78B45005B676D /* ActiveInvitesViewController.swift in Sources */,
 				895281711BF7D643005B676D /* SSKeychainQuery.m in Sources */,
 				895281691BF7CAF7005B676D /* LoginViewController.swift in Sources */,
+				B2702C7E1BF7EFC200A6429B /* ConfirmResponseViewController.swift in Sources */,
 				895281311BF71CA6005B676D /* DownTo.xcdatamodeld in Sources */,
 				895281701BF7D643005B676D /* SSKeychain.m in Sources */,
 			);
