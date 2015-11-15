@@ -88,20 +88,11 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     func handleRefresh(refreshControl: UIRefreshControl) {
         //Creates updateList array with new events
         update()
-        
-        if updateList.count != 0 {
-            for index in 0...updateList.count-1 {
-                invites.append(updateList[index])
-            }
-        }
-        
-        self.myTableView.reloadData()
-        refreshControl.endRefreshing()
+
     }
     
     //This funcation gives a chance to access all events that the current user is invited to
     func update() {
-        
         self.updateList = []
         let usersTable = self.client.tableWithName("Events")
         //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
@@ -113,14 +104,27 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
             }
             else {
                 for item in result.items {
-                    if String(item["receiver_userid"]) == self.client.currentUser.userId {
+                    print(item)
+                    print(String(item["receiver_userid"]))
+                    print(self.client.currentUser.userId)
+                    if item["receiver_userid"] as! String == self.client.currentUser.userId {
                     
                     //Change to username, not userID
                     //fix with proper time
                         self.updateList.append(Event.fromDictionary(item as! [String: AnyObject]))
+                        print("array: \(self.updateList)")
                         //<- item["name"/"time"/"location"/"creator_userid"/"_createdAt"]
                     }
                 }
+
+                if self.updateList.count != 0 {
+                    for index in 0...self.updateList.count-1 {
+                        self.invites.append(self.updateList[index])
+                    }
+                }
+
+                self.myTableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         })
     }
