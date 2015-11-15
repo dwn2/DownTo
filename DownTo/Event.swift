@@ -31,6 +31,23 @@ class Countdown : CustomStringConvertible {
         self.currentMinutes = currentMinutes
         self.currentSeconds = currentSeconds
     }
+    
+    init(timeOfCreation: String, eventLength: Int) {
+        //time format from DB is 2015-11-15T09:32:03.03+00:00
+        let deadlineMinute: Int = Int(timeOfCreation.substringWithRange(Range<String.Index>(start: timeOfCreation.startIndex.advancedBy(14), end: timeOfCreation.endIndex.advancedBy(-12))))! + eventLength
+        let deadlineSecond: Int = Int(timeOfCreation.substringWithRange(Range<String.Index>(start: timeOfCreation.startIndex.advancedBy(17), end: timeOfCreation.endIndex.advancedBy(-9))))!
+        
+        let currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "mm:ss"
+        let convertedDate = dateFormatter.stringFromDate(currentDate)
+        let currentMinute: Int = Int(convertedDate.substringWithRange(Range<String.Index>(start: convertedDate.startIndex.advancedBy(0), end: convertedDate.endIndex.advancedBy(-3))))!
+        let currentSecond: Int = Int(convertedDate.substringWithRange(Range<String.Index>(start: convertedDate.startIndex.advancedBy(3), end: convertedDate.endIndex.advancedBy(0))))!
+        
+        self.startMinutes = eventLength
+        self.currentMinutes = deadlineMinute - currentMinute
+        self.currentSeconds = deadlineSecond - currentSecond
+    }
 
     convenience init(_ startMinutes: Int) {
         self.init(startMinutes: startMinutes, currentMinutes: startMinutes, currentSeconds: 0)
