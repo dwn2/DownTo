@@ -89,8 +89,10 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         //Creates updateList array with new events
         update()
         
-        for index in 1...updateList.count-1 {
-            invites.append(updateList[index])
+        if updateList.count != 0 {
+            for index in 0...updateList.count-1 {
+                invites.append(updateList[index])
+            }
         }
         
         self.myTableView.reloadData()
