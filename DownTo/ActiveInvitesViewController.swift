@@ -25,8 +25,10 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     @IBOutlet var myTableView: UITableView!
     
     var invites: [Event] = []
+//    var times: [Countdown] = []
     var selectedIndex = 0
     var updateList: [Event] = []
+//    var updateTime: [Countdown] = []
     var client: MSClient!
 
     var myUser: User?
@@ -52,6 +54,20 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
 //        invites.append(Event.init(creatorName: "Ryan", eventTime: NSDate.init(), eventName: "Chill", eventLocation: "Narnia"))
 
         self.myTableView.addSubview(self.refreshControl)
+        
+//        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) {
+//            while self.times.count > 0 {
+//                for index in 0...self.times.count-1 {
+//                    
+//                    sleep(1)
+//                    self.times[index].decrement()
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        //self.timeLabel.text = String(self.times[index]!)
+//                        self.myTableView.reloadData()
+//                    }
+//                }
+//            }
+//        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -70,7 +86,7 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
         let myCell = tableView.dequeueReusableCellWithIdentifier("prototype1", forIndexPath: indexPath) as UITableViewCell
         
         myCell.textLabel?.text = "\(invites[indexPath.row].creatorName): Down 2 \(invites[indexPath.row].eventName)"
-        myCell.detailTextLabel?.text = "Time"
+        myCell.detailTextLabel?.text = "\(invites[indexPath.row].eventTime):00"
         myCell.tag = indexPath.row
         
         return myCell
@@ -98,6 +114,9 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
     func update() {
         self.updateList = []
         self.invites = []
+//        self.updateTime = []
+//        self.times = []
+        
         let usersTable = self.client.tableWithName("Events")
         //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
         let predicate = NSPredicate.init(format: "receiver_userid == %@", myUser!.id)
@@ -116,12 +135,19 @@ class ActiveInvitesViewController : UIViewController, UITableViewDelegate, UITab
 
                         self.updateList.append(Event.fromDictionary(item as! [String: AnyObject]))
                         print("array: \(self.updateList)")
+                    
+//                    
+//                    let eventLengthItem = item["time"] as! Int
+//                    let stringItem = item["__createdAt"] as! String
+//                    self.updateTime.append(Countdown.init(timeOfCreation: stringItem, eventLength: eventLengthItem))
+//                    
 //                    }
                 }
 
                 if self.updateList.count != 0 {
                     for index in 0...self.updateList.count-1 {
                         self.invites.append(self.updateList[index])
+//                        self.times.append(self.updateTime[index])
                     }
                 }
 
