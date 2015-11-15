@@ -15,6 +15,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     @IBOutlet weak var pickerWrapperView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
 
     var isPickerWrapperViewActive: Bool = true
     let pickerWrapperViewHeight: CGFloat = 260
@@ -26,6 +27,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
     var myUser: User?
     var otherUsers: [User] = []
+    var selectedUsers: [Bool] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +42,23 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         meetAtField.layer.borderWidth = 1.0
         meetAtField.layer.borderColor = UIColor.blackColor().CGColor
 
-        let tap = UITapGestureRecognizer.init(target: self, action: Selector("dismissKeyboard"))
+        let tap = UITapGestureRecognizer.init(target: self, action: Selector("dismissKeyboard:"))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+
+        for _ in otherUsers {
+            selectedUsers.append(false)
+        }
     }
 
-    func dismissKeyboard() {
-        view.endEditing(true)
+    func dismissKeyboard(sender: UITapGestureRecognizer) {
+//        let point = sender.locationInView(self.view)
+//        if !CGRectContainsPoint(tableView.frame, point) {
+//            downToField.resignFirstResponder()
+//            meetAtField.resignFirstResponder()
+//        }
+        downToField.resignFirstResponder()
+        meetAtField.resignFirstResponder()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -89,6 +102,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
     }
 
     @IBAction func showPickerWrapperView() {
+        view.bringSubviewToFront(pickerWrapperView)
         heightConstraint.constant = 0
         UIView.animateWithDuration(0.1, animations: {
             self.view.layoutIfNeeded()
@@ -136,7 +150,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         }
         
         
-        let invItem: [String: AnyObject] = ["name": downToField.text!,
+        let invItem: [String: AnyObject] =
+            ["name": downToField.text!,
             "time": Int(timeButton.titleLabel!.text!)!,
             "location": meetAtField.text!]
         let itemTable = client.tableWithName("Events")
@@ -195,6 +210,17 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
         return myCell
     }
 
-    func tableView
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        if selectedUsers[indexPath.row] {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            selectedUsers[indexPath.row] = false
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            selectedUsers[indexPath.row] = true
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 }
 

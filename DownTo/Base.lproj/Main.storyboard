@@ -381,6 +381,7 @@
                         <outlet property="meetAtField" destination="mPX-O8-EXc" id="RIa-oH-CGB"/>
                         <outlet property="pickerView" destination="rJ8-4B-T3m" id="30b-lJ-gpn"/>
                         <outlet property="pickerWrapperView" destination="04J-UK-GXA" id="eED-19-jxB"/>
+                        <outlet property="tableView" destination="dKd-SD-k1E" id="fN1-0B-3HO"/>
                         <outlet property="timeButton" destination="gIf-gp-hCu" id="EPl-5a-IcJ"/>
                     </connections>
                 </viewController>
