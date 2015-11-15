@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var downToField: UITextField!
     @IBOutlet weak var meetAtField: UITextField!
     @IBOutlet weak var timeButton: UIButton!
@@ -24,6 +24,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
     var client: MSClient!
 
+    var myUser: User?
+    var otherUsers: [User] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,9 +39,14 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
 
         meetAtField.layer.borderWidth = 1.0
         meetAtField.layer.borderColor = UIColor.blackColor().CGColor
+
+        let tap = UITapGestureRecognizer.init(target: self, action: Selector("dismissKeyboard"))
+        view.addGestureRecognizer(tap)
     }
 
-
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     override func viewWillAppear(animated: Bool) {
         if isPickerWrapperViewActive {
@@ -142,9 +150,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
                 print("Sent event: \(invItem)")
             }
         }
-        
-       
-        
+
         let usersTable = client.tableWithName("Users")
         usersTable.readWithCompletion({
             (result, error2) in
@@ -178,5 +184,17 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UIPicker
             }
         })
     }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return otherUsers.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let myCell = tableView.dequeueReusableCellWithIdentifier("invitedUsersCell", forIndexPath: indexPath) as UITableViewCell
+        myCell.textLabel?.text = otherUsers[indexPath.row].name
+        return myCell
+    }
+
+    func tableView
 }
 

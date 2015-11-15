@@ -8,8 +8,15 @@
 
 import UIKit
 
+struct User {
+    var name: String
+    var id: String
+}
+
 class LoginViewController : UIViewController {
     var client: MSClient!
+    var myUser: User?
+    var otherUsers: [User] = []
 
     override func viewDidLoad() {
         client = (UIApplication.sharedApplication().delegate as! AppDelegate).client!
@@ -17,13 +24,14 @@ class LoginViewController : UIViewController {
 //        SSKeychain.deletePasswordForService("AzureMobileServiceTutorial", account: "Facebook:1217481261611695")
         loadAuthInfo()
         if client.currentUser == nil {
-            print(client.currentUser)
             client.loginWithProvider("facebook", controller: self, animated: true, completion: {
                 (user: MSUser!, error: NSError!) -> () in
-                print("\(error)")
                 self.saveAuthInfo()
-                print("\(self.client.currentUser.userId)")
+                self.requestUsersList()
             })
+        }
+        else {
+            requestUsersList()
         }
     }
 
@@ -50,6 +58,37 @@ class LoginViewController : UIViewController {
             print("user id: \(userId)")
             client.currentUser = MSUser.init(userId: userId)
             client.currentUser.mobileServiceAuthenticationToken = SSKeychain.passwordForService("AzureMobileServiceTutorial", account: userId)
+        }
+    }
+
+    func requestUsersList() {
+        print("requesting users list")
+        let userTable = self.client.tableWithName("Users")
+        userTable.readWithCompletion({
+            (result, error) in
+            if error != nil {
+                print(error)
+            }
+            else {
+                for item in result.items {
+                    if item["name"] as! String == self.client!.currentUser.userId {
+                        self.myUser = User(name: item["UserName"] as! String, id: item["name"] as! String)
+                    }
+                    else {
+                        self.otherUsers.append(User(name: item["UserName"] as! String, id: item["name"] as! String))
+                    }
+                }
+                print("my user: \(self.myUser)")
+                print("other users: \(self.otherUsers)")
+            }
+        })
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier! == "showCreateEvent" {
+            let dest = segue.destinationViewController as! CreateEventViewController
+            dest.myUser = myUser
+            dest.otherUsers = otherUsers
         }
     }
 }
